@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { AlertTriangle, CheckCircle, Phone, Clock, Users, MessageSquare, Gavel, Ban } from "lucide-react";
+import { AlertTriangle, CheckCircle, Phone, Clock, Users, MessageSquare, Gavel, Ban, Bot } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface Violation {
   id: string;
@@ -61,7 +62,11 @@ const violations: Violation[] = [
   },
 ];
 
-const ViolationsChecker = () => {
+interface ViolationsCheckerProps {
+  onShareToChat?: (violationTitles: string[]) => void;
+}
+
+const ViolationsChecker = ({ onShareToChat }: ViolationsCheckerProps) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const toggleViolation = (id: string) => {
@@ -135,9 +140,23 @@ const ViolationsChecker = () => {
               You may be entitled to statutory damages of <strong className="text-accent">up to $1,000 per collector</strong>,
               plus actual damages and attorney's fees under the FDCPA.
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground mb-4">
               Scroll down to get free cease & desist letter templates you can send today.
             </p>
+            {onShareToChat && (
+              <Button
+                variant="hero"
+                size="lg"
+                onClick={() => {
+                  const titles = violations.filter((v) => selected.includes(v.id)).map((v) => v.title);
+                  onShareToChat(titles);
+                }}
+                className="mt-2"
+              >
+                <Bot className="w-5 h-5 mr-2" />
+                Get AI Guidance on My Violations
+              </Button>
+            )}
           </div>
         )}
       </div>
