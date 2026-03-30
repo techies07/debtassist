@@ -15,11 +15,17 @@ const SUGGESTIONS = [
   "What is debt validation and how do I request it?",
 ];
 
-const ChatAssistant = () => {
+interface ChatAssistantProps {
+  initialMessage?: string | null;
+  onInitialMessageConsumed?: () => void;
+}
+
+const ChatAssistant = ({ initialMessage, onInitialMessageConsumed }: ChatAssistantProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const hasSentInitial = useRef(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,6 +36,17 @@ const ChatAssistant = () => {
   useEffect(() => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen]);
+
+  useEffect(() => {
+    if (initialMessage && !hasSentInitial.current && !isLoading) {
+      hasSentInitial.current = true;
+      setIsOpen(true);
+      setTimeout(() => {
+        sendMessage(initialMessage);
+        onInitialMessageConsumed?.();
+      }, 300);
+    }
+  }, [initialMessage]);
 
   const sendMessage = async (text: string) => {
     if (!text.trim() || isLoading) return;
