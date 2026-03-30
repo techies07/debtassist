@@ -4,6 +4,7 @@ import ViolationsChecker from "@/components/ViolationsChecker";
 import LetterTemplates from "@/components/LetterTemplates";
 import KnowYourRights from "@/components/KnowYourRights";
 import Footer from "@/components/Footer";
+import ChatAssistant from "@/components/ChatAssistant";
 
 const Index = () => {
   const violationsRef = useRef<HTMLDivElement>(null);
@@ -27,6 +28,7 @@ const Index = () => {
       </div>
       <KnowYourRights />
       <Footer />
+      <ChatAssistant />
     </div>
   );
 };
