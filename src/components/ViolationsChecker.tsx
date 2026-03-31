@@ -64,6 +64,7 @@ const violations: Violation[] = [
 
 interface ViolationsCheckerProps {
   onShareToChat?: (violationTitles: string[]) => void;
+  onExportPdf?: (violations: { title: string; description: string; law: string }[]) => void;
 }
 
 const ViolationsChecker = ({ onShareToChat }: ViolationsCheckerProps) => {
