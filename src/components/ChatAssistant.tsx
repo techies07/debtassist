@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Bot, User, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User, Loader2, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
@@ -18,9 +18,10 @@ const SUGGESTIONS = [
 interface ChatAssistantProps {
   initialMessage?: string | null;
   onInitialMessageConsumed?: () => void;
+  onExportPdf?: (messages: Message[]) => void;
 }
 
-const ChatAssistant = ({ initialMessage, onInitialMessageConsumed }: ChatAssistantProps) => {
+const ChatAssistant = ({ initialMessage, onInitialMessageConsumed, onExportPdf }: ChatAssistantProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -173,9 +174,20 @@ const ChatAssistant = ({ initialMessage, onInitialMessageConsumed }: ChatAssista
                 <p className="text-[10px] text-primary-foreground/50">Legal info, not legal advice</p>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-primary-foreground/50 hover:text-primary-foreground transition-colors">
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              {messages.length > 0 && onExportPdf && (
+                <button
+                  onClick={() => onExportPdf(messages)}
+                  className="text-primary-foreground/50 hover:text-primary-foreground transition-colors p-1"
+                  title="Export conversation as PDF"
+                >
+                  <Download className="w-4 h-4" />
+                </button>
+              )}
+              <button onClick={() => setIsOpen(false)} className="text-primary-foreground/50 hover:text-primary-foreground transition-colors">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
