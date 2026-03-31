@@ -67,7 +67,7 @@ interface ViolationsCheckerProps {
   onExportPdf?: (violations: { title: string; description: string; law: string }[]) => void;
 }
 
-const ViolationsChecker = ({ onShareToChat }: ViolationsCheckerProps) => {
+const ViolationsChecker = ({ onShareToChat, onExportPdf }: ViolationsCheckerProps) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const toggleViolation = (id: string) => {
