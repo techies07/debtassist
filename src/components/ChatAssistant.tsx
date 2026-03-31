@@ -174,9 +174,20 @@ const ChatAssistant = ({ initialMessage, onInitialMessageConsumed, onExportPdf }
                 <p className="text-[10px] text-primary-foreground/50">Legal info, not legal advice</p>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-primary-foreground/50 hover:text-primary-foreground transition-colors">
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              {messages.length > 0 && onExportPdf && (
+                <button
+                  onClick={() => onExportPdf(messages)}
+                  className="text-primary-foreground/50 hover:text-primary-foreground transition-colors p-1"
+                  title="Export conversation as PDF"
+                >
+                  <Download className="w-4 h-4" />
+                </button>
+              )}
+              <button onClick={() => setIsOpen(false)} className="text-primary-foreground/50 hover:text-primary-foreground transition-colors">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
