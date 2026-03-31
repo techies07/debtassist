@@ -18,6 +18,7 @@ const SUGGESTIONS = [
 interface ChatAssistantProps {
   initialMessage?: string | null;
   onInitialMessageConsumed?: () => void;
+  onExportPdf?: (messages: Message[]) => void;
 }
 
 const ChatAssistant = ({ initialMessage, onInitialMessageConsumed }: ChatAssistantProps) => {
