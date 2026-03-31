@@ -21,7 +21,7 @@ interface ChatAssistantProps {
   onExportPdf?: (messages: Message[]) => void;
 }
 
-const ChatAssistant = ({ initialMessage, onInitialMessageConsumed }: ChatAssistantProps) => {
+const ChatAssistant = ({ initialMessage, onInitialMessageConsumed, onExportPdf }: ChatAssistantProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
