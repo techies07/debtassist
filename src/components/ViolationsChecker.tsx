@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AlertTriangle, CheckCircle, Phone, Clock, Users, MessageSquare, Gavel, Ban, Bot } from "lucide-react";
+import { AlertTriangle, CheckCircle, Phone, Clock, Users, MessageSquare, Gavel, Ban, Bot, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Violation {
