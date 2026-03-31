@@ -12,9 +12,9 @@ const Footer = () => (
         consult a consumer rights attorney. Many offer free consultations for FDCPA cases.
       </p>
       <div className="flex justify-center gap-6 text-xs text-primary-foreground/40 font-body">
-        <a href="https://www.consumerfinance.gov/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">CFPB</a>
+        <a href="https://www.consumerfinance.gov/complaint/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">CFPB</a>
         <a href="https://www.ftc.gov/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">FTC</a>
-        <a href="https://www.naca.net/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">Find an Attorney (NACA)</a>
+        <a href="https://www.consumeradvocates.org/find-an-attorney/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">Find an Attorney (NACA)</a>
       </div>
     </div>
   </footer>
