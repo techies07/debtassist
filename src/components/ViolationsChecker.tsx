@@ -144,20 +144,36 @@ const ViolationsChecker = ({ onShareToChat, onExportPdf }: ViolationsCheckerProp
             <p className="text-sm text-muted-foreground mb-4">
               Scroll down to get free cease & desist letter templates you can send today.
             </p>
-            {onShareToChat && (
-              <Button
-                variant="hero"
-                size="lg"
-                onClick={() => {
-                  const titles = violations.filter((v) => selected.includes(v.id)).map((v) => v.title);
-                  onShareToChat(titles);
-                }}
-                className="mt-2"
-              >
-                <Bot className="w-5 h-5 mr-2" />
-                Get AI Guidance on My Violations
-              </Button>
-            )}
+            <div className="flex flex-wrap justify-center gap-3">
+              {onShareToChat && (
+                <Button
+                  variant="hero"
+                  size="lg"
+                  onClick={() => {
+                    const titles = violations.filter((v) => selected.includes(v.id)).map((v) => v.title);
+                    onShareToChat(titles);
+                  }}
+                >
+                  <Bot className="w-5 h-5 mr-2" />
+                  Get AI Guidance on My Violations
+                </Button>
+              )}
+              {onExportPdf && (
+                <Button
+                  variant="hero-outline"
+                  size="lg"
+                  onClick={() => {
+                    const selectedViolations = violations
+                      .filter((v) => selected.includes(v.id))
+                      .map((v) => ({ title: v.title, description: v.description, law: v.law }));
+                    onExportPdf(selectedViolations);
+                  }}
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Export PDF Report
+                </Button>
+              )}
+            </div>
           </div>
         )}
       </div>
