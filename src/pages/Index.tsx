@@ -5,6 +5,8 @@ import LetterTemplates from "@/components/LetterTemplates";
 import KnowYourRights from "@/components/KnowYourRights";
 import Footer from "@/components/Footer";
 import ChatAssistant from "@/components/ChatAssistant";
+import { generatePdfReport } from "@/lib/generatePdf";
+import { toast } from "sonner";
 
 const Index = () => {
   const violationsRef = useRef<HTMLDivElement>(null);
