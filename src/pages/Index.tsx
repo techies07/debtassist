@@ -57,7 +57,7 @@ const Index = () => {
         onScrollToTemplates={() => scrollTo(templatesRef)}
       />
       <div ref={violationsRef}>
-        <ViolationsChecker onShareToChat={handleShareToChat} />
+        <ViolationsChecker onShareToChat={handleShareToChat} onExportPdf={handleExportFromViolations} />
       </div>
       <div ref={templatesRef}>
         <LetterTemplates />
@@ -67,6 +67,7 @@ const Index = () => {
       <ChatAssistant
         initialMessage={chatInitialMessage}
         onInitialMessageConsumed={() => setChatInitialMessage(null)}
+        onExportPdf={handleExportFromChat}
       />
     </div>
   );
